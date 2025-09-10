@@ -1,5 +1,5 @@
 
-let points = prompt("Enter your marks")
+let points = prompt("Enter your marks") //prompt user to enter marks
 
 // function checkGrade() {
 //     let points = Grade(document.getElementById("points").value);
@@ -27,24 +27,24 @@ let points = prompt("Enter your marks")
 
 // checkGrade();   
 
-let grade
+let grade //variable to hold grade
 
-if (points > 100 || points < 0 || isNaN(points)) {
+if (points > 100 || points < 0 || isNaN(points)) { //check if points are valid
         grade = "Invalid points";
     }
-    else if (points >= 79) { 
+    else if (points >= 79) {  //check for grade A
         grade = "Grade A";
     }
-    else if (points > 60 && points < 79) {
+    else if (points > 60 && points < 79) {   //check for grade B
         grade = "Grade B";
     }
-    else if (points > 49 && points <= 59) {
+    else if (points > 49 && points <= 59) {  //check for grade C
         grade = "Grade C";
     }
-    else if (points > 40 && points <= 49) {
+    else if (points > 40 && points <= 49) {   //check for grade D
         grade = "Grade D";
     }
-    else if (points < 40) {
+    else if (points < 40) {  //check for grade E
         grade = "Grade E";
     }
     
@@ -52,4 +52,4 @@ if (points > 100 || points < 0 || isNaN(points)) {
 
 
 
-    alert(grade)
+    alert(grade)   //display the grade
