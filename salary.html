@@ -16,6 +16,68 @@
     <!--Empty paragraph where the result will show-->
     <p id="result"></p>
     <!--Link to external JS file-->
-    <script src="salary.js"></script>
+    <script>
+        // Function to calculate Net Salary
+    function calculateNetSalary(basicSalary, benefits) {
+      const gross = basicSalary + benefits;
+
+      // PAYE tax bands (KRA)
+      let taxable = gross;
+      let paye = 0;
+      const bands = [
+        { limit: 24000, rate: 0.10 },
+        { limit: 8333, rate: 0.25 },
+        { limit: 467667, rate: 0.30 },
+        { limit: 300000, rate: 0.325 },
+        { limit: Infinity, rate: 0.35 },
+      ];
+
+      for (let { limit, rate } of bands) {
+        if (taxable <= 0) break;
+        const amount = Math.min(taxable, limit);
+        paye += amount * rate;
+        taxable -= amount;
+      }
+      paye = Math.max(paye - 2400, 0); // Personal relief
+
+      // NHIF (SHIF 2.75% of gross, min 300)
+      const nhif = Math.max(gross * 0.0275, 300);
+
+      // NSSF (Tier I and II, capped at 4320)
+      const tier1 = Math.min(gross, 8000) * 0.06;
+      const tier2 = Math.max(Math.min(gross, 72000) - 8000, 0) * 0.06;
+      const nssf = Math.min(tier1 + tier2, 4320);
+
+      // Net Salary
+      const net = gross - (paye + nhif + nssf);
+
+      return { gross, paye, nhif, nssf, net };
+    }
+
+    // --- User Input ---
+    const basic = parseFloat(prompt("Enter Basic Salary (KSh):"));
+    const benefits = parseFloat(prompt("Enter Benefits (KSh):"));
+
+    // --- Calculation ---
+    const result = calculateNetSalary(basic, benefits);
+
+    // --- Output ---
+    console.log("\n--- Salary Breakdown ---");
+    console.log(Gross Salary: KSh ${result.gross.toFixed(2)});
+    console.log(PAYE (Tax): KSh ${result.paye.toFixed(2)});
+    console.log(NHIF Deduction: KSh ${result.nhif.toFixed(2)});
+    console.log(NSSF Deduction: KSh ${result.nssf.toFixed(2)});
+    console.log(Net Salary: KSh ${result.net.toFixed(2)});
+
+    alert(
+      "Gross Salary: KSh " + result.gross.toFixed(2) + "\n" +
+      "PAYE (Tax): KSh " + result.paye.toFixed(2) + "\n" +
+      "NHIF Deduction: KSh " + result.nhif.toFixed(2) + "\n" +
+      "NSSF Deduction: KSh " + result.nssf.toFixed(2) + "\n" +
+      "Net Salary: KSh " + result.net.toFixed(2)
+    );
+
+    // Function to handle button click and display result
+    </script>
 </body>
 </html>
