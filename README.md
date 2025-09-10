@@ -7,7 +7,7 @@
 ## Description
 1. program for submit grades between 0 to 100 with a pass mark of 70 
 2. program for speed calculation giving ok if within speed limit but over speed limit given points of demerit hence equal to or over 12 points license suspended
-
+3. program to calculate individuals Net salary with nhif nssf gross salary and net salary 
 ## Installation
 You use git clone to be able to download the documents in the GitHub
 
